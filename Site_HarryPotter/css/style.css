@@ -51,6 +51,11 @@ nav ul li a {
     text-decoration: none;
 }
 
+.logo {
+    font-size: 2em;
+    font-weight: bold;
+}
+
 a:hover {
     display: block;
     filter: drop-shadow(0 0 10px);
@@ -64,13 +69,77 @@ align-items: center;
 flex-wrap: wrap;
 }
 
-.logo {
-    font-size: 2em;
-    font-weight: bold;
+.banner{
+background: url(../img/banner\ 1.png) no-repeat center/cover;
+height: 400px;
+display: flex;
+margin-top: 90px;
+align-items: flex-end;
+
+justify-content: center;
+color: #D3A626;
+font-size: 1.3em;
+text-align: center;
+text-shadow: 4px 4px black;
+}
+
+
+#quem {
+  padding: 35px;
+  background-color: rgb(51, 1, 1);
+  color: aliceblue;  
+}
+
+.quem-container {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   gap: 40px;
+   max-width: 1400px;
+   margin: auto;
+}
+
+.quem-texto {
+    flex: 1;
+    padding: 20px;
+}
+
+.quem-texto h1 {
+    font-size: 1.5;
+    margin-bottom: 20px;
+}
+
+.quem-texto p {
+    font-size: 1;
+    line-height: 1.5;
+    margin-top: 10px;
+}
+
+.hex-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    flex: 1;
+}
+
+.hex {
+    width: 140px;
+    height: 120px;
+    clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
+    overflow: hidden;
+    background-color: darkgray;
+    position: relative;
+}
+
+.hex img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 @media (max-width:675px) {
-    header .container {
+    header .container, .quem-container {
         flex-direction: column;
         text-align: center;
     }
@@ -78,6 +147,10 @@ flex-wrap: wrap;
     nav ul {
         margin-top: 10px;
         flex-direction: column;
+    }
+
+    .banner {
+        margin-top: 160px;
     }
 }
 
