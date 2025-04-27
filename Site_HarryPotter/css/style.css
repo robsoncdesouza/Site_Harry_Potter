@@ -83,6 +83,9 @@ text-align: center;
 text-shadow: 4px 4px black;
 }
 
+.logo {
+    width: 25%;
+}
 
 #quem {
   padding: 35px;
@@ -151,6 +154,11 @@ text-shadow: 4px 4px black;
 
     .banner {
         margin-top: 160px;
+    }
+
+    .logo {
+        width: 45%;
+        align-items: center;
     }
 }
 
