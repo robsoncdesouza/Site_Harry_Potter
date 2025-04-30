@@ -15,7 +15,7 @@
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: auto;
     padding: 20px;
 }
@@ -157,7 +157,7 @@ text-shadow: 4px 4px black;
     }
 
     .logo {
-        width: 45%;
+        width: 35%;
         align-items: center;
     }
 }
