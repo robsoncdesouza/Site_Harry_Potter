@@ -83,6 +83,10 @@ text-align: center;
 text-shadow: 4px 4px black;
 }
 
+section {
+    scroll-margin-top: 150px;
+}
+
 .logo {
     width: 25%;
 }
@@ -154,6 +158,10 @@ text-shadow: 4px 4px black;
 
     .banner {
         margin-top: 160px;
+    }
+
+    section {
+        scroll-margin-top: 220px;
     }
 
     .logo {
