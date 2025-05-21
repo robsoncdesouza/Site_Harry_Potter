@@ -102,6 +102,10 @@ text-shadow: 4px 4px black;
    margin: auto;
 }
 
+.centro {
+    text-align: center;
+}
+
 .quem-texto {
     flex: 1;
     padding: 20px;
