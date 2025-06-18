@@ -16,18 +16,18 @@
     scroll-behavior: smooth;
 }
 
-.container {
+.container{
     max-width: 1400px;
     margin: auto;
     padding: 20px;
 }
 
 
-body {
+body{
     background-color: rgb(51, 1, 1);
 }
 
-header {
+header{
     background-color: #740101;
     color:  aliceblue;
     padding: 15px 15px 15px 15px;
@@ -37,35 +37,35 @@ header {
     z-index: 1000;
 }
 
-nav ul {
+nav ul{
 list-style: none;
 display: flex;
 flex-wrap: wrap;
 justify-content: center;
 }
 
-nav ul li {
+nav ul li{
     margin-left: 20px;
 }
 
-nav ul li a {
+nav ul li a{
     color: aliceblue;
     text-decoration: none;
 }
 
-.logo {
+.logo{
     font-size: 2em;
     font-weight: bold;
 }
 
-nav a:hover {
+nav a:hover{
     color: aliceblue;
     text-decoration: none;
     padding: 0px 1px 1px 0;
     position: relative;
 }
 
-nav a::after {
+nav a::after{
     content: " ";
     width: 0%;
     height: 4px;
@@ -76,11 +76,11 @@ nav a::after {
     transition: 0.5s ease-in-out;
 }
 
-a:hover::after {
+a:hover::after{
     width: 100%;
 }
 
-header .container {
+header .container{
 display: flex;
 justify-content: space-between;
 align-items: center;
@@ -101,21 +101,21 @@ text-align: center;
 text-shadow: 4px 4px black;
 }
 
-.logo {
+.logo{
     width: 20%;
 }
 
-section {
+section{
     scroll-margin-top: 135px;
 }
 
-#quem {
+#quem{
   padding: 35px;
   background-color: rgb(51, 1, 1);
   color: aliceblue;  
 }
 
-.quem-container {
+.quem-container{
    display: flex;
    justify-content: space-between;
    align-items: center;
@@ -124,28 +124,28 @@ section {
    margin: auto;
 }
 
-.centro {
+.centro{
     text-align: center;
 }
 
-.quem-texto {
+.quem-texto{
     flex: 1;
     padding: 20px;
 }
 
-.quem-texto h1 {
+.quem-texto h1{
     font-size: 2.5;
     margin-bottom: 20px;
     color: #D3A626
 }
 
-.quem-texto p {
+.quem-texto p{
     font-size: 1.2em;
     line-height: 1.5;
     margin-top: 10px;
 }
 
-.hex-grid {
+.hex-grid{
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
@@ -153,7 +153,7 @@ section {
     flex: 1;
 }
 
-.hex {
+.hex{
     width: 140px;
     height: 120px;
     clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
@@ -162,20 +162,20 @@ section {
     position: relative;
 }
 
-.hex img {
+.hex img{
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-#livros {
+#livros{
     background-color:rgb(51, 1, 1);
     padding-left: 20px;
     padding-right: 20px;
     scroll-margin-top: 190px;
 }
 
-#livros .container {
+#livros .container{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 4fr));
     gap: 10px;
@@ -183,7 +183,7 @@ section {
     padding: 50px 0;
 }
 
-#livros .item {
+#livros .item{
     background-color: #5a0202 ;
     border: 2.5px solid #ad000a ;
     border-radius: 10px;
@@ -193,36 +193,36 @@ section {
     cursor: pointer;
 }
 
-#livros .item:hover {
+#livros .item:hover{
     transform: translateY(-5px);
     box-shadow: 0 8px 16px rgb(31, 29, 29);
 }
 
-#livros .item:active {
+#livros .item:active{
     transform: scale(0.98);
     box-shadow: 0 4px 6px rgba(0, 0, 0.15);
 }
 
-#livros .item p {
+#livros .item p{
     margin-top: 15px;
     font-size: 0.95em;
     color: aliceblue;
 }
 
-#livros .item h3 {
+#livros .item h3{
     text-align: center;
     align-items: end;
     color: #D3A626
 }
 
-#livros .imagem img {
+#livros .imagem img{
     width: 100%;
     max-width: 250px;
     height: auto;
     margin-bottom: 10px;
 }
 
-#livros h1 {
+#livros h1{
     font-size: 2.5;
     display: flex;
     text-align: center;
@@ -230,7 +230,7 @@ section {
     color: #D3A626
 }
 
-.modal {
+.modal{
     background: aliceblue;
     padding: 20px;
     border-radius: 12px;
@@ -239,11 +239,11 @@ section {
     text-align: center;
 }
 
-.card h3 {
+.card h3{
     margin-top: 0;
 }
 
-.btn {
+.btn{
     display: inline-block;
     margin-top: 15px;
     padding: 10px 20px;
@@ -254,7 +254,7 @@ section {
     cursor: pointer;
 }
 
-.modal {
+.modal{
     position: fixed;
     top: 0;
     left: 0;
@@ -268,11 +268,11 @@ section {
     align-items: center;
 }
 
-.modal:target {
+.modal:target{
     display: flex;
 }
 
-.modalContent {
+.modalContent{
     background: #740101;
     padding: 30px;
     border-radius: 10px;
@@ -284,21 +284,40 @@ section {
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
 }
 
-.modalContent h3 {
+.modalContent h3{
     color: rgb(105, 82, 31);
 }
 
-    .closeBtn {
-        margin-top: 20px;
-        display: inline-block;
-        padding: 8px 16px;
-        background:  #805700;
-        color: aliceblue;
-        border-radius: 6px;
-        text-decoration: none;
-    }
+.closeBtn{
+    margin-top: 20px;
+    display: inline-block;
+    padding: 8px 16px;
+    background:  #805700;
+    color: aliceblue;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+#filmes .containerl h3{
+    text-align: center;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+#filmes .containerl{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 4fr));
+    gap: 10px;
+    text-align: center;
+    justify-items: center;
+    padding: 0px;
+}
+
+#filmes .imgl{
+    margin-top: 5px;
+}
        
-@media (max-width:675px) {
+@media (max-width:675px){
     header .container, .quem-container {
         flex-direction: column;
         text-align: center;
