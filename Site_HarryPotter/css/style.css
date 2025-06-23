@@ -88,15 +88,14 @@ flex-wrap: wrap;
 }
 
 .banner{
-background: url(../img/banner\ 1.png) no-repeat center/cover;
+background: url(../img/banner1.png) no-repeat center/cover;
 height: 400px;
 display: flex;
 margin-top: 90px;
 align-items: flex-end;
-
 justify-content: center;
 color: #D3A626;
-font-size: 1.3em;
+font-size: 1.3rem;
 text-align: center;
 text-shadow: 4px 4px black;
 }
@@ -298,77 +297,138 @@ section{
     text-decoration: none;
 }
 
-#filmes .containerl h3{
+#filmes{
+    background-color:rgb(51, 1, 1);
+    padding-left: 20px;
+    padding-right: 20px;
+    scroll-margin-top: 190px;
+}
+
+#filmes h1{
+    margin-top: 40px;
+    font-size: 2em;
+    margin-bottom: 20px;
+    display: flex;
     text-align: center;
     justify-content: center;
-    margin-top: 15px;
+    color: #D3A626
+     
 }
 
 #filmes .containerl{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 4fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 4fr));
     gap: 10px;
     text-align: center;
-    justify-items: center;
-    padding: 0px;
+    padding: 50px 0;
+    margin-left: 20px;
+    margin-right: 20px;
+    justify-content: center;
 }
 
-#filmes .imgl{
-    margin-top: 5px;
+#filmes .imgl img{
+    background-color: #5a0202 ;
+    border: 2.5px solid #ad000a ;
+    border-radius: 30px;
+    padding: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0.1);
+    transition: transform 0.5 ease; box-shadow: 0.2 ease;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    margin-left: 30px;
+    margin-right: 30px;
+    max-width: 250px;
+    width: 100%;
+}
+
+#filmes .imgl img:hover{
+    transform: translateX(-5px);
+    box-shadow: 0 8px 16px rgb(31, 29, 29);
+}
+
+#filmes .imgl img:active{
+    transform: scale(0.98);
+    box-shadow: 0 4px 6px rgba(0, 0, 0.15);
+}
+
+#filmes h3{
+    display: flex;
+    margin-bottom: 10px;
+    justify-content: center;
+    text-align: center;
+    color: #D3A626
+}
+
+#filmes .h1{
+    font-size: 2.5;
+    margin-bottom: 20px;
+    color: #D3A626
 }
        
 @media (max-width:675px){
-    header .container, .quem-container {
+    header .container, .quem-container{
         flex-direction: column;
         text-align: center;
     }
 
-    #quem {
-        scroll-margin-top: 218px;
+    #quem{
+        scroll-margin-top: 195px;
     }
 
-    nav ul {
+    nav ul{
         margin-top: 10px;
         flex-direction: column;
     }
 
-    .banner {
+    .banner{
         margin-top: 160px;
+        width: 100%;
+        text-align: center;
+        flex-wrap: wrap;
     }
 
-    .logo {
+    .logo{
         width: 35%;
         align-items: center;
     }
 
-    #livros {
-        scroll-margin-top: 273px;
+    #livros{
+        scroll-margin-top: 250px;
     }
 
-     #livros .container {
+     #livros .container{
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      
+      align-items: center;
     }
 
-       #livros .item {
-      width: 65%;
+       #livros .item{
+        margin: 0; 
+        justify-items: center;
+        align-items: center;
     }
 
-    .modal {
-        margin-top: 100px;
+    .modal{
+        margin-top: 145px;
     }
 
-    .modalContent {
+    .modalContent{
         max-height: 60vh;
+    }
+
+    #filmes{
+        scroll-margin-top: 250px;
+    }
+
+    #filmes .imgl img{
+        justify-content: center;
+        align-items: center;
+        margin: 0;
     }
 }
 
+@media (max-width:321px){
 
-
-
-
-
-
-   
+}
