@@ -144,6 +144,16 @@ section{
     margin-top: 10px;
 }
 
+.quem-texto a{
+    text-decoration: none;
+    color: #805700;
+}
+
+.font{
+    color: rgb(255, 255, 255);
+    margin-top: 15px;
+}
+
 .hex-grid{
     display: flex;
     flex-wrap: wrap;
@@ -281,6 +291,7 @@ section{
     text-align: center;
     color: aliceblue;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    font-size: 14px;
 }
 
 .modalContent h3{
@@ -364,6 +375,23 @@ section{
     font-size: 2.5;
     margin-bottom: 20px;
     color: #D3A626
+}
+
+.bannerContato{
+    background: url(../img/banner_contato.jpg) no-repeat center/cover;
+    height: 400px;
+    display: flex;
+    margin-top: 90px;
+    align-items: center;
+    justify-content: center;
+    color: #D3A626;
+    font-size: 1.3rem;
+    text-align: center;
+    text-shadow: 4px 4px black;
+}
+
+.bannerContato h2{
+    flex-direction: column;
 }
        
 @media (max-width:675px){
