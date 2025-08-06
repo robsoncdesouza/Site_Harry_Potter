@@ -393,6 +393,25 @@ section{
 .bannerContato h2{
     flex-direction: column;
 }
+
+.formContato{
+    background-color:  #5a0202;
+    border-color: #ad000a;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: auto;
+    margin-top: 40px;
+    color: #805700;
+}
+
+.contatog{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    font-size: 1.2em;
+}
        
 @media (max-width:675px){
     header .container, .quem-container{
