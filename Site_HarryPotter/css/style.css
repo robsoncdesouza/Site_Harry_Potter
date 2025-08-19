@@ -406,13 +406,57 @@ section{
     color: #805700;
 }
 
+.quem-container{
+    display: flex;
+    align-items: center;
+}
+
 .contatog{
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
     font-size: 1.2em;
 }
-       
+
+.contatog input,
+  .contatog select,
+  .contatog textarea {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1em;
+    margin-top: 8px;
+  }
+
+  .contatog input[type="checkbox"],
+  .contatog input[type="radio"] {
+    margin-right: 8px;
+    margin-top: 0;
+  }
+  
+  .contatog label {
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+
+
+  .contatog ul{
+    list-style: none;
+    color: aliceblue;
+    text-decoration: none;
+  }
+
+  .contatog li{
+    text-decoration: none;
+    list-style: none;
+    color: aliceblue;
+  }
+
+  #contato h1{
+    color: #D3A626;
+    margin-top: 40px;
+  }
+
 @media (max-width:675px){
     header .container, .quem-container{
         flex-direction: column;
