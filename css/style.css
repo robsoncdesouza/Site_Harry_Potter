@@ -459,6 +459,10 @@ section{
     color: aliceblue;
   }
 
+  .contatog label {
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
   #contato h1{
     color: #D3A626;
     margin-top: 40px;
@@ -524,6 +528,15 @@ section{
     color: #D3A626;
     text-align: center;
     justify-content: center;
+}
+
+.ftr{
+    background-color: #1d0000;
+    color: aliceblue;
+    text-align: center;
+    justify-content: center;
+    padding: 40px;
+    border-radius: 5px;
 }
 
 @media (max-width:675px){
