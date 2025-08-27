@@ -1,0 +1,1353 @@
+/*
+#740101 Vermelho escuro
+#AD0001 Vermelho
+#EEBA2F Amarelo
+#D3A626 Amarelo Escuro
+#000000 Preto
+*/
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Berkshire Swash", serif;
+    font-weight: 400;
+    font-style: normal;
+    scroll-behavior: smooth;
+}
+
+.container{
+    max-width: 1400px;
+    margin: auto;
+    padding: 20px;
+}
+
+
+body{
+    background-color: rgb(51, 1, 1);
+}
+
+header{
+    background-color: #740101;
+    color:  aliceblue;
+    padding: 15px 15px 15px 15px;
+    width: 100%;
+    top: 0;
+    position: fixed;
+    z-index: 1000;
+}
+
+nav ul{
+list-style: none;
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+}
+
+nav ul li{
+    margin-left: 20px;
+}
+
+nav ul li a{
+    color: aliceblue;
+    text-decoration: none;
+}
+
+.logo{
+    font-size: 2em;
+    font-weight: bold;
+}
+
+nav a:hover{
+    color: aliceblue;
+    text-decoration: none;
+    padding: 0px 1px 1px 0;
+    position: relative;
+}
+
+nav a::after{
+    content: " ";
+    width: 0%;
+    height: 4px;
+    background-color: #EEBA2F;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transition: 0.5s ease-in-out;
+}
+
+a:hover::after{
+    width: 100%;
+}
+
+header .container{
+display: flex;
+justify-content: space-between;
+align-items: center;
+flex-wrap: wrap;
+}
+
+.banner{
+background: url(../img/banner1.png) no-repeat center/cover;
+height: 400px;
+display: flex;
+margin-top: 90px;
+align-items: flex-end;
+justify-content: center;
+color: #D3A626;
+font-size: 1.3rem;
+text-align: center;
+text-shadow: 4px 4px black;
+}
+
+.logo{
+    width: 20%;
+}
+
+section{
+    scroll-margin-top: 135px;
+}
+
+#quem{
+  padding: 35px;
+  background-color: rgb(51, 1, 1);
+  color: aliceblue;  
+}
+
+.quem-container{
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   gap: 40px;
+   max-width: 1400px;
+   margin: auto;
+}
+
+.centro{
+    text-align: center;
+}
+
+.quem-texto{
+    flex: 1;
+    padding: 20px;
+}
+
+.quem-texto h1{
+    font-size: 2.5;
+    margin-bottom: 20px;
+    color: #D3A626
+}
+
+.quem-texto p{
+    font-size: 1.2em;
+    line-height: 1.5;
+    margin-top: 10px;
+}
+
+.quem-texto a{
+    text-decoration: none;
+    color: #805700;
+}
+
+.font{
+    color: rgb(255, 255, 255);
+    margin-top: 15px;
+}
+
+.hex-grid{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    flex: 1;
+}
+
+.hex{
+    width: 140px;
+    height: 120px;
+    clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
+    overflow: hidden;
+    background-color: darkgray;
+    position: relative;
+}
+
+.hex img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#livros{
+    background-color:rgb(51, 1, 1);
+    padding-left: 20px;
+    padding-right: 20px;
+    scroll-margin-top: 190px;
+}
+
+#livros .container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 4fr));
+    gap: 10px;
+    text-align: center;
+    padding: 50px 0;
+}
+
+#livros .item{
+    background-color: #5a0202 ;
+    border: 2.5px solid #ad000a ;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0.1);
+    transition: transform 0.5 ease; box-shadow: 0.2 ease;
+    cursor: pointer;
+}
+
+#livros .item:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgb(31, 29, 29);
+}
+
+#livros .item:active{
+    transform: scale(0.98);
+    box-shadow: 0 4px 6px rgba(0, 0, 0.15);
+}
+
+#livros .item p{
+    margin-top: 15px;
+    font-size: 0.95em;
+    color: aliceblue;
+}
+
+#livros .item h3{
+    text-align: center;
+    align-items: end;
+    color: #D3A626
+}
+
+#livros .imagem img{
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+#livros h1{
+    font-size: 2.5;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    color: #D3A626
+}
+
+.modal{
+    background: aliceblue;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: auto;
+    text-align: center;
+}
+
+.card h3{
+    margin-top: 0;
+}
+
+.btn{
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: #805700;
+    color: aliceblue;
+    text-decoration: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+    margin-top: 50px;
+    background: rgba(0, 0, 0, 0.6);
+    display: none;
+    justify-content: center; 
+    align-items: center;
+}
+
+.modal:target{
+    display: flex;
+}
+
+.modalContent{
+    background: #740101;
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    text-align: center;
+    color: aliceblue;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+}
+
+.modalContent h3{
+    color: rgb(105, 82, 31);
+}
+
+.closeBtn{
+    margin-top: 20px;
+    display: inline-block;
+    padding: 8px 16px;
+    background:  #805700;
+    color: aliceblue;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+#filmes{
+    background-color:rgb(51, 1, 1);
+    padding-left: 20px;
+    padding-right: 20px;
+    scroll-margin-top: 190px;
+}
+
+#filmes h1{
+    margin-top: 40px;
+    font-size: 2em;
+    margin-bottom: 20px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    color: #D3A626
+     
+}
+
+#filmes .containerl{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(295px, 4fr));
+    gap: 10px;
+    text-align: center;
+    padding: 50px 0;
+    margin-left: 20px;
+    margin-right: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+#filmes .imgl img{
+    background-color: #5a0202 ;
+    border: 2.5px solid #ad000a ;
+    border-radius: 30px;
+    padding: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0.1);
+    transition: transform 0.5 ease; box-shadow: 0.2 ease;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    margin-left: 30px;
+    margin-right: 30px;
+    max-width: 250px;
+    width: 100%;
+}
+
+#filmes .imgl img:hover{
+    transform: translateX(-5px);
+    box-shadow: 0 8px 16px rgb(31, 29, 29);
+}
+
+#filmes .imgl img:active{
+    transform: scale(0.98);
+    box-shadow: 0 4px 6px rgba(0, 0, 0.15);
+}
+
+#filmes h3{
+    display: flex;
+    margin-bottom: 10px;
+    justify-content: center;
+    text-align: center;
+    color: #D3A626
+}
+
+#filmes .h1{
+    font-size: 2.5;
+    margin-bottom: 20px;
+    color: #D3A626
+}
+
+.bannerContato{
+    background: url(../img/banner_contato.jpg) no-repeat center/cover;
+    height: 400px;
+    display: flex;
+    margin-top: 90px;
+    align-items: center;
+    justify-content: center;
+    color: #D3A626;
+    font-size: 1.3rem;
+    text-align: center;
+    text-shadow: 4px 4px black;
+}
+
+.bannerContato h2{
+    flex-direction: column;
+}
+
+.formContato{
+    background-color:  #5a0202;
+    border-color: #ad000a;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: auto;
+    margin-top: 40px;
+    color: #805700;
+}
+
+.quem-container{
+    display: flex;
+    align-items: center;
+}
+
+.bannerContato h1{
+    text-align: center;
+    align-items: center;
+    margin-top: 90px;
+}
+
+.contatog{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    font-size: 1.2em;
+}
+
+.contatog input,
+  .contatog select,
+  .contatog textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1em;
+    margin-top: 8px;
+  }
+
+  .contatog input[type="checkbox"]{
+    margin-right: 8px;
+    margin-top: 0;
+    align-items: left;
+  }
+  
+  .contatog label {
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+
+
+  .contatog ul{
+    list-style: none;
+    color: aliceblue;
+    text-decoration: none;
+  }
+
+  .contatog li{
+    text-decoration: none;
+    list-style: none;
+    color: aliceblue;
+  }
+
+  #contato h1{
+    color: #D3A626;
+    margin-top: 40px;
+  }
+
+  .smf{
+    margin-top: 20px;
+  }
+
+  .smf h4{
+    color: aliceblue;
+  }
+
+  .link{
+    color: #805700;
+    text-decoration: none;
+  }
+
+  .containert {
+  width: 100%;
+  overflow-x: auto; 
+  -webkit-overflow-scrolling: touch;
+}
+
+.containert table {
+  min-width: 600px; 
+}
+
+.tabelaf {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 1rem;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: rgb(199, 199, 199); 
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.tabelaf th, 
+.tabelaf td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid rgb(252, 37, 37);
+}
+
+.tabelaf thead {
+  background: linear-gradient(90deg, #f0bd17, #f06233, #ad000a);
+  color: #000;
+  font-weight: bold;
+}
+
+.tabelaf tbody tr:hover {
+  background-color: rgb(49, 22, 22);
+  transition: background-color 0.3s ease;
+}
+
+.tabelaf tbody tr:last-child td {
+  border-bottom: none;
+}
+
+@media (max-width:675px){
+    header .container, .quem-container{
+        flex-direction: column;
+        text-align: center;
+    }
+
+    #quem{
+        scroll-margin-top: 195px;
+    }
+
+    nav ul{
+        margin-top: 10px;
+        flex-direction: column;
+    }
+
+    .banner{
+        margin-top: 160px;
+        width: 100%;
+        text-align: center;
+        flex-wrap: wrap;
+    }
+
+    .logo{
+        width: 35%;
+        align-items: center;
+    }
+
+    #livros{
+        scroll-margin-top: 250px;
+    }
+
+     #livros .container{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+    }
+
+       #livros .item{
+        margin: 0; 
+        justify-items: center;
+        align-items: center;
+    }
+
+    .modal{
+        margin-top: 145px;
+    }
+
+    .modalContent{
+        max-height: 60vh;
+    }
+
+    #filmes{
+        scroll-margin-top: 250px;
+    }
+
+    #filmes .imgl img{
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+    }
+
+    .formContato{
+        padding: 20px;
+        max-width: 90%;
+    }
+
+    .game-title{
+        margin-top: 275px;
+    }
+
+    .tabelaf{
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+
+}
+
+@media (max-width:346px){
+    #filmes .containerl{
+        max-width: 90%;
+        align-items: center;               
+    }
+}
+
+
+/* ===== ÁREA PRINCIPAL DO JOGO ===== */
+
+/* Container principal do jogo */
+.game-main {
+    max-width: 1200px; /* Largura máxima */
+    margin: 2rem auto; /* Centraliza com margem superior */
+    padding: 0 2rem; /* Espaçamento lateral */
+    position: relative; /* Permite posicionamento absoluto dos filhos */
+    margin-top: 190px; /* Faz com que não fique escondido atrás do header */
+}
+
+/* Título do jogo */
+.game-title {
+    text-align: center; /* Centraliza o texto */
+    margin-bottom: 2rem; /* Margem inferior */
+    color: #ecf0f1; /* Cor clara */
+}
+
+.game-title h2 {
+    font-family: 'Cinzel', serif; /* Fonte elegante */
+    font-size: 2.5rem; /* Tamanho grande */
+    color: #ffd700; /* Cor dourada */
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7); /* Sombra pronunciada */
+    margin-bottom: 0.5rem; /* Margem inferior */
+}
+
+.game-title p {
+    font-size: 1.1rem; /* Tamanho médio */
+    opacity: 0.9; /* Ligeiramente transparente */
+}
+
+/* ===== CONTROLES DO JOGO ===== */
+
+/* Container dos controles */
+.game-controls {
+    display: flex; /* Layout flexível */
+    justify-content: space-between; /* Espaça elementos */
+    align-items: center; /* Alinha verticalmente */
+    background: rgba(0, 0, 0, 0.7); /* Fundo escuro transparente */
+    padding: 1.5rem; /* Espaçamento interno */
+    border-radius: 15px; /* Bordas arredondadas */
+    margin-bottom: 2rem; /* Margem inferior */
+    border: 2px solid rgba(255, 215, 0, 0.3); /* Borda dourada sutil */
+    backdrop-filter: blur(5px); /* Efeito de desfoque */
+}
+
+/* Informações do jogo (placar, nível, vidas) */
+.game-info {
+    display: flex; /* Layout flexível */
+    gap: 2rem; /* Espaçamento entre elementos */
+    align-items: center; /* Alinha verticalmente */
+}
+
+/* Estilos individuais para cada display */
+.score-display, .level-display, .lives-display {
+    display: flex; /* Layout flexível */
+    flex-direction: column; /* Organiza verticalmente */
+    align-items: center; /* Centraliza */
+    text-align: center; /* Centraliza texto */
+}
+
+/* Labels dos displays */
+.game-info .label {
+    font-size: 0.9rem; /* Tamanho pequeno */
+    color: #bdc3c7; /* Cor cinza clara */
+    margin-bottom: 0.25rem; /* Margem inferior pequena */
+    font-weight: 500; /* Peso médio */
+}
+
+/* Valores dos displays */
+.game-info .value {
+    font-size: 1.4rem; /* Tamanho grande */
+    font-weight: 700; /* Negrito */
+    color: #725500; /* Cor dourada */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Sombra */
+}
+
+/* Container dos botões de controle */
+.control-buttons {
+    display: flex; /* Layout flexível */
+    gap: 1rem; /* Espaçamento entre botões */
+}
+
+/* Estilos base dos botões */
+.btn {
+    padding: 0.75rem 1.5rem; /* Espaçamento interno */
+    border: none; /* Remove borda padrão */
+    border-radius: 25px; /* Bordas muito arredondadas */
+    font-size: 1rem; /* Tamanho da fonte */
+    font-weight: 600; /* Peso da fonte */
+    cursor: pointer; /* Cursor de ponteiro */
+    transition: all 0.3s ease; /* Transição suave */
+    text-transform: uppercase; /* Texto em maiúsculas */
+    letter-spacing: 0.5px; /* Espaçamento entre letras */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Sombra */
+    position: relative; /* Para pseudo-elementos */
+    overflow: hidden; /* Oculta overflow para efeitos */
+}
+
+/* Botão primário (Iniciar, Continuar) */
+.btn-primary {
+    background: linear-gradient(45deg, #27ae60, #2ecc71); /* Gradiente verde */
+    color: white; /* Texto branco */
+}
+
+.btn-primary:hover {
+    background: linear-gradient(45deg, #229954, #27ae60); /* Gradiente mais escuro no hover */
+    transform: translateY(-2px); /* Eleva o botão */
+    box-shadow: 0 6px 20px rgba(39, 174, 96, 0.4); /* Sombra verde */
+}
+
+/* Botão secundário (Pausar) */
+.btn-secondary {
+    background: linear-gradient(45deg, #f39c12, #e67e22); /* Gradiente laranja */
+    color: white; /* Texto branco */
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(45deg, #e67e22, #d35400); /* Gradiente mais escuro no hover */
+    transform: translateY(-2px); /* Eleva o botão */
+    box-shadow: 0 6px 20px rgba(243, 156, 18, 0.4); /* Sombra laranja */
+}
+
+/* Botão de destaque (Reiniciar) */
+.btn-accent {
+    background: linear-gradient(45deg, #8e44ad, #9b59b6); /* Gradiente roxo */
+    color: white; /* Texto branco */
+}
+
+.btn-accent:hover {
+    background: linear-gradient(45deg, #7d3c98, #8e44ad); /* Gradiente mais escuro no hover */
+    transform: translateY(-2px); /* Eleva o botão */
+    box-shadow: 0 6px 20px rgba(142, 68, 173, 0.4); /* Sombra roxa */
+}
+
+/* Botão desabilitado */
+.btn:disabled {
+    opacity: 0.5; /* Reduz opacidade */
+    cursor: not-allowed; /* Cursor de não permitido */
+    transform: none; /* Remove transformações */
+}
+
+.btn:disabled:hover {
+    transform: none; /* Remove efeito hover */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Mantém sombra original */
+}
+
+/* ===== ÁREA DO JOGO (POSITION RELATIVE/ABSOLUTE) ===== */
+
+/* Container principal da área do jogo */
+.game-area {
+    position: relative; /* POSITION RELATIVE - Base para posicionamento absoluto dos filhos */
+    width: 100%; /* Largura total */
+    height: 500px; /* Altura fixa da área do jogo */
+    background: linear-gradient(180deg, #2c3e50 0%, #34495e 100%); /* Gradiente de fundo */
+    border: 3px solid #ffd700; /* Borda dourada */
+    border-radius: 15px; /* Bordas arredondadas */
+    overflow: hidden; /* Oculta elementos que saem da área */
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5); /* Sombra interna */
+    margin-bottom: 2rem; /* Margem inferior */
+}
+
+/* Container interno do jogo */
+.game-container {
+    position: relative; /* POSITION RELATIVE - Permite posicionamento absoluto dos elementos do jogo */
+    width: 100%; /* Largura total */
+    height: 100%; /* Altura total */
+    background-image: 
+        radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 215, 0, 0.1) 0%, transparent 50%); /* Efeitos de luz mágica */
+}
+
+/* ===== PERSONAGEM PRINCIPAL (POSITION ABSOLUTE) ===== */
+
+/* Personagem do jogador (Harry Potter) */
+.player {
+    position: absolute; /* POSITION ABSOLUTE - Posicionamento livre dentro do container relativo */
+    bottom: 20px; /* Posição inicial na parte inferior */
+    left: 50%; /* Centraliza horizontalmente */
+    transform: translateX(-50%); /* Ajuste fino da centralização */
+    width: 50px; /* Largura do personagem */
+    height: 50px; /* Altura do personagem */
+    z-index: 10; /* Garante que fique acima de outros elementos */
+    transition: all 0.1s ease; /* Transição suave para movimento */
+    cursor: pointer; /* Indica que é interativo */
+}
+
+/* Ícone do personagem */
+.player-icon {
+    font-size: 2.5rem; /* Tamanho grande do emoji */
+    display: block; /* Exibe como bloco */
+    text-align: center; /* Centraliza */
+    line-height: 1; /* Remove espaçamento extra */
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5)); /* Sombra do ícone */
+    animation: playerGlow 2s ease-in-out infinite alternate; /* Animação de brilho */
+}
+
+/* Animação de brilho do personagem */
+@keyframes playerGlow {
+    from {
+        filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
+    }
+    to {
+        filter: drop-shadow(2px 2px 8px rgba(255, 215, 0, 0.8));
+    }
+}
+
+/* ===== ÁREAS DE ELEMENTOS DINÂMICOS (POSITION ABSOLUTE) ===== */
+
+/* Área dos objetos coletáveis */
+.collectibles-area {
+    position: absolute; /* POSITION ABSOLUTE - Posicionamento livre */
+    top: 0; /* Topo da área do jogo */
+    left: 0; /* Esquerda da área do jogo */
+    width: 100%; /* Largura total */
+    height: 100%; /* Altura total */
+    pointer-events: none; /* Não interfere com cliques */
+    z-index: 5; /* Camada intermediária */
+}
+
+/* Área dos obstáculos */
+.obstacles-area {
+    position: absolute; /* POSITION ABSOLUTE - Posicionamento livre */
+    top: 0; /* Topo da área do jogo */
+    left: 0; /* Esquerda da área do jogo */
+    width: 100%; /* Largura total */
+    height: 100%; /* Altura total */
+    pointer-events: none; /* Não interfere com cliques */
+    z-index: 5; /* Camada intermediária */
+}
+
+/* Área de efeitos visuais */
+.effects-area {
+    position: absolute; /* POSITION ABSOLUTE - Posicionamento livre */
+    top: 0; /* Topo da área do jogo */
+    left: 0; /* Esquerda da área do jogo */
+    width: 100%; /* Largura total */
+    height: 100%; /* Altura total */
+    pointer-events: none; /* Não interfere com cliques */
+    z-index: 15; /* Camada superior para efeitos */
+}
+
+/* ===== OBJETOS COLETÁVEIS E OBSTÁCULOS (CRIADOS DINAMICAMENTE) ===== */
+
+/* Estilos para objetos coletáveis */
+.collectible {
+    position: absolute; /* POSITION ABSOLUTE - Posicionamento livre */
+    width: 30px; /* Largura do objeto */
+    height: 30px; /* Altura do objeto */
+    font-size: 1.5rem; /* Tamanho do emoji */
+    display: flex; /* Layout flexível */
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+    animation: collectibleFloat 2s ease-in-out infinite alternate; /* Animação de flutuação */
+    cursor: pointer; /* Indica que é interativo */
+    z-index: 8; /* Camada dos coletáveis */
+}
+
+/* Animação de flutuação dos coletáveis */
+@keyframes collectibleFloat {
+    from {
+        transform: translateY(0px) scale(1);
+        filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.5));
+    }
+    to {
+        transform: translateY(-10px) scale(1.1);
+        filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.8));
+    }
+}
+
+/* Estilos para obstáculos */
+.obstacle {
+    position: absolute; /* POSITION ABSOLUTE - Posicionamento livre */
+    width: 35px; /* Largura do obstáculo */
+    height: 35px; /* Altura do obstáculo */
+    font-size: 1.8rem; /* Tamanho do emoji */
+    display: flex; /* Layout flexível */
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+    animation: obstacleShake 1s ease-in-out infinite alternate; /* Animação de tremor */
+    z-index: 8; /* Camada dos obstáculos */
+}
+
+/* Animação de tremor dos obstáculos */
+@keyframes obstacleShake {
+    from {
+        transform: rotate(-2deg) scale(1);
+        filter: drop-shadow(0 0 5px rgba(231, 76, 60, 0.5));
+    }
+    to {
+        transform: rotate(2deg) scale(1.05);
+        filter: drop-shadow(0 0 10px rgba(231, 76, 60, 0.8));
+    }
+}
+
+/* ===== TELAS DE SOBREPOSIÇÃO (POSITION ABSOLUTE) ===== */
+
+/* Tela de game over */
+.game-over-screen {
+    position: absolute; /* POSITION ABSOLUTE - Sobrepõe a área do jogo */
+    top: 0; /* Topo da área */
+    left: 0; /* Esquerda da área */
+    width: 100%; /* Largura total */
+    height: 100%; /* Altura total */
+    background: rgba(0, 0, 0, 0.9); /* Fundo escuro semi-transparente */
+    display: none; /* Oculto por padrão */
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+    z-index: 20; /* Camada superior */
+    backdrop-filter: blur(5px); /* Efeito de desfoque */
+}
+
+/* Conteúdo da tela de game over */
+.game-over-content {
+    text-align: center; /* Centraliza texto */
+    color: #ecf0f1; /* Cor clara */
+    background: rgba(52, 73, 94, 0.9); /* Fundo escuro */
+    padding: 2rem; /* Espaçamento interno */
+    border-radius: 15px; /* Bordas arredondadas */
+    border: 2px solid #e74c3c; /* Borda vermelha */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Sombra */
+}
+
+.game-over-content h3 {
+    font-family: 'Cinzel', serif; /* Fonte elegante */
+    font-size: 2rem; /* Tamanho grande */
+    color: #e74c3c; /* Cor vermelha */
+    margin-bottom: 1rem; /* Margem inferior */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra do texto */
+}
+
+.game-over-content p {
+    font-size: 1.1rem; /* Tamanho médio */
+    margin-bottom: 1rem; /* Margem inferior */
+}
+
+/* Tela de pausa */
+.pause-screen {
+    position: absolute; /* POSITION ABSOLUTE - Sobrepõe a área do jogo */
+    top: 0; /* Topo da área */
+    left: 0; /* Esquerda da área */
+    width: 100%; /* Largura total */
+    height: 100%; /* Altura total */
+    background: rgba(0, 0, 0, 0.8); /* Fundo escuro semi-transparente */
+    display: none; /* Oculto por padrão */
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+    z-index: 20; /* Camada superior */
+    backdrop-filter: blur(3px); /* Efeito de desfoque */
+}
+
+/* Conteúdo da tela de pausa */
+.pause-content {
+    text-align: center; /* Centraliza texto */
+    color: #ecf0f1; /* Cor clara */
+    background: rgba(52, 73, 94, 0.9); /* Fundo escuro */
+    padding: 2rem; /* Espaçamento interno */
+    border-radius: 15px; /* Bordas arredondadas */
+    border: 2px solid #f39c12; /* Borda laranja */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Sombra */
+}
+
+.pause-content h3 {
+    font-family: 'Cinzel', serif; /* Fonte elegante */
+    font-size: 1.8rem; /* Tamanho grande */
+    color: #f39c12; /* Cor laranja */
+    margin-bottom: 1rem; /* Margem inferior */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra do texto */
+}
+
+.pause-content p {
+    font-size: 1rem; /* Tamanho médio */
+    margin-bottom: 1.5rem; /* Margem inferior */
+}
+
+/* ===== INSTRUÇÕES DO JOGO ===== */
+
+/* Container das instruções */
+.game-instructions {
+    background: rgba(0, 0, 0, 0.7); /* Fundo escuro transparente */
+    padding: 2rem; /* Espaçamento interno */
+    border-radius: 15px; /* Bordas arredondadas */
+    border: 2px solid rgba(255, 215, 0, 0.3); /* Borda dourada sutil */
+    color: #ecf0f1; /* Cor clara */
+    margin-bottom: 2rem; /* Margem inferior */
+    backdrop-filter: blur(5px); /* Efeito de desfoque */
+}
+
+.game-instructions h3 {
+    font-family: 'Cinzel', serif; /* Fonte elegante */
+    color: #ffd700; /* Cor dourada */
+    margin-bottom: 1rem; /* Margem inferior */
+    font-size: 1.5rem; /* Tamanho médio-grande */
+}
+
+.game-instructions ul {
+    list-style: none; /* Remove marcadores padrão */
+    padding-left: 0; /* Remove padding padrão */
+}
+
+.game-instructions li {
+    margin-bottom: 0.8rem; /* Espaçamento entre itens */
+    padding-left: 1rem; /* Espaçamento à esquerda */
+    position: relative; /* Para pseudo-elementos */
+}
+
+.game-instructions li::before {
+    content: "✨"; /* Emoji de estrela como marcador */
+    position: absolute; /* Posicionamento absoluto */
+    left: 0; /* Alinha à esquerda */
+    color: #ffd700; /* Cor dourada */
+}
+
+/* ===== FOOTER ===== */
+
+/* Footer do jogo */
+.game-footer {
+    text-align: center; /* Centraliza texto */
+    padding: 2rem; /* Espaçamento interno */
+    color: #bdc3c7; /* Cor cinza clara */
+    background: rgba(0, 0, 0, 0.5); /* Fundo escuro transparente */
+    border-top: 1px solid rgba(255, 215, 0, 0.3); /* Borda superior dourada */
+    margin-top: 2rem; /* Margem superior */
+}
+
+.game-footer p {
+    margin-bottom: 0.5rem; /* Margem inferior pequena */
+    font-size: 0.9rem; /* Tamanho pequeno */
+}
+
+/* ===== MEDIA QUERIES PARA RESPONSIVIDADE ===== */
+
+/* Tablets (768px e abaixo) */
+@media screen and (max-width: 768px) {
+    /* Ajustes no header */
+    .header-container {
+        padding: 1rem; /* Reduz padding */
+    }
+    
+    .logo h1 {
+        font-size: 1.5rem; /* Reduz tamanho da fonte */
+    }
+    
+    /* Mostra o botão do menu mobile */
+    .mobile-menu-btn {
+        display: flex; /* Exibe o botão hambúrguer */
+    }
+    
+    /* Oculta a navegação por padrão no mobile */
+    .main-nav {
+        display: none; /* Oculta por padrão */
+        position: absolute; /* Posicionamento absoluto */
+        top: 100%; /* Abaixo do header */
+        left: 0; /* Alinha à esquerda */
+        width: 100%; /* Largura total */
+        background: rgba(0, 0, 0, 0.95); /* Fundo escuro */
+        backdrop-filter: blur(10px); /* Efeito de desfoque */
+        border-top: 1px solid rgba(255, 215, 0, 0.3); /* Borda superior */
+    }
+    
+    /* Navegação ativa no mobile */
+    .main-nav.active {
+        display: block; /* Exibe quando ativo */
+    }
+    
+    /* Lista de navegação no mobile */
+    .nav-list {
+        flex-direction: column; /* Organiza verticalmente */
+        gap: 0; /* Remove espaçamento */
+        padding: 1rem 0; /* Espaçamento vertical */
+    }
+    
+    /* Links de navegação no mobile */
+    .nav-link {
+        display: block; /* Exibe como bloco */
+        padding: 1rem 2rem; /* Aumenta área de toque */
+        border-radius: 0; /* Remove bordas arredondadas */
+        border-bottom: 1px solid rgba(255, 215, 0, 0.1); /* Borda inferior sutil */
+    }
+    
+    /* Ajustes no título do jogo */
+    .game-title h2 {
+        font-size: 2rem; /* Reduz tamanho */
+    }
+    
+    /* Ajustes nos controles do jogo */
+    .game-controls {
+        flex-direction: column; /* Organiza verticalmente */
+        gap: 1.5rem; /* Espaçamento entre seções */
+        padding: 1rem; /* Reduz padding */
+    }
+    
+    .game-info {
+        justify-content: center; /* Centraliza */
+        gap: 1.5rem; /* Reduz espaçamento */
+    }
+    
+    .control-buttons {
+        justify-content: center; /* Centraliza botões */
+        flex-wrap: wrap; /* Permite quebra de linha */
+    }
+    
+    /* Ajustes na área do jogo */
+    .game-area {
+        height: 400px; /* Reduz altura */
+    }
+    
+    /* Ajustes no personagem */
+    .player {
+        width: 40px; /* Reduz tamanho */
+        height: 40px; /* Reduz tamanho */
+    }
+    
+    .player-icon {
+        font-size: 2rem; /* Reduz tamanho do emoji */
+    }
+    
+    /* Ajustes nos objetos do jogo */
+    .collectible, .obstacle {
+        width: 25px; /* Reduz tamanho */
+        height: 25px; /* Reduz tamanho */
+        font-size: 1.2rem; /* Reduz tamanho do emoji */
+    }
+    
+    /* Ajustes nas telas de sobreposição */
+    .game-over-content, .pause-content {
+        padding: 1.5rem; /* Reduz padding */
+        margin: 1rem; /* Adiciona margem */
+    }
+    
+    .game-over-content h3, .pause-content h3 {
+        font-size: 1.5rem; /* Reduz tamanho */
+    }
+}
+
+/* Smartphones (480px e abaixo) */
+@media screen and (max-width: 480px) {
+    /* Ajustes gerais */
+    .game-main {
+        padding: 0 1rem; /* Reduz padding lateral */
+    }
+    
+    /* Ajustes no título */
+    .game-title h2 {
+        font-size: 1.8rem; /* Reduz ainda mais */
+    }
+    
+    .game-title p {
+        font-size: 1rem; /* Reduz tamanho */
+    }
+    
+    /* Ajustes nos controles */
+    .game-info {
+        gap: 1rem; /* Reduz espaçamento */
+    }
+    
+    .game-info .value {
+        font-size: 1.2rem; /* Reduz tamanho */
+    }
+    
+    /* Ajustes nos botões */
+    .btn {
+        padding: 0.6rem 1.2rem; /* Reduz padding */
+        font-size: 0.9rem; /* Reduz fonte */
+    }
+    
+    /* Ajustes na área do jogo */
+    .game-area {
+        height: 350px; /* Reduz altura ainda mais */
+    }
+    
+    /* Ajustes no personagem */
+    .player {
+        width: 35px; /* Reduz tamanho */
+        height: 35px; /* Reduz tamanho */
+    }
+    
+    .player-icon {
+        font-size: 1.8rem; /* Reduz tamanho do emoji */
+    }
+    
+    /* Ajustes nos objetos */
+    .collectible, .obstacle {
+        width: 22px; /* Reduz tamanho */
+        height: 22px; /* Reduz tamanho */
+        font-size: 1rem; /* Reduz tamanho do emoji */
+    }
+    
+    /* Ajustes nas instruções */
+    .game-instructions {
+        padding: 1.5rem; /* Reduz padding */
+    }
+    
+    .game-instructions h3 {
+        font-size: 1.3rem; /* Reduz tamanho */
+    }
+    
+    .game-instructions li {
+        font-size: 0.9rem; /* Reduz tamanho da fonte */
+    }
+}
+
+/* Smartphones muito pequenos (320px e abaixo) */
+@media screen and (max-width: 320px) {
+    /* Ajustes extremos para telas muito pequenas */
+    .logo h1 {
+        font-size: 1.3rem; /* Reduz ainda mais */
+    }
+    
+    .game-title h2 {
+        font-size: 1.5rem; /* Reduz drasticamente */
+    }
+    
+    .game-area {
+        height: 300px; /* Altura mínima */
+    }
+    
+    .game-controls {
+        padding: 0.8rem; /* Padding mínimo */
+    }
+    
+    .btn {
+        padding: 0.5rem 1rem; /* Padding mínimo */
+        font-size: 0.8rem; /* Fonte pequena */
+    }
+    
+    .control-buttons {
+        gap: 0.5rem; /* Espaçamento mínimo */
+    }
+}
+
+/* ===== ANIMAÇÕES E EFEITOS ESPECIAIS ===== */
+
+/* Animação de entrada para elementos */
+@keyframes fadeInUp {
+    from {
+        opacity: 0; /* Invisível */
+        transform: translateY(30px); /* Deslocado para baixo */
+    }
+    to {
+        opacity: 1; /* Visível */
+        transform: translateY(0); /* Posição normal */
+    }
+}
+
+/* Animação de coleta de objeto */
+@keyframes collectAnimation {
+    0% {
+        transform: scale(1) rotate(0deg); /* Tamanho normal */
+        opacity: 1; /* Visível */
+    }
+    50% {
+        transform: scale(1.5) rotate(180deg); /* Aumenta e gira */
+        opacity: 0.8; /* Ligeiramente transparente */
+    }
+    100% {
+        transform: scale(0) rotate(360deg); /* Desaparece girando */
+        opacity: 0; /* Invisível */
+    }
+}
+
+/* Animação de colisão */
+@keyframes collisionAnimation {
+    0% {
+        transform: scale(1); /* Tamanho normal */
+        filter: hue-rotate(0deg); /* Cor normal */
+    }
+    25% {
+        transform: scale(1.2); /* Aumenta */
+        filter: hue-rotate(90deg); /* Muda cor */
+    }
+    50% {
+        transform: scale(0.8); /* Diminui */
+        filter: hue-rotate(180deg); /* Muda cor */
+    }
+    75% {
+        transform: scale(1.1); /* Aumenta novamente */
+        filter: hue-rotate(270deg); /* Muda cor */
+    }
+    100% {
+        transform: scale(1); /* Volta ao normal */
+        filter: hue-rotate(360deg); /* Cor normal */
+    }
+}
+
+/* Classes para aplicar animações dinamicamente */
+.collect-animation {
+    animation: collectAnimation 0.5s ease-out forwards; /* Aplica animação de coleta */
+}
+
+.collision-animation {
+    animation: collisionAnimation 0.6s ease-in-out; /* Aplica animação de colisão */
+}
+
+/* Efeito de entrada suave para elementos */
+.fade-in {
+    animation: fadeInUp 0.6s ease-out; /* Aplica animação de entrada */
+}
+
+/* ===== ESTADOS ESPECIAIS ===== */
+
+/* Estado de jogo pausado */
+.game-paused .game-container {
+    filter: grayscale(50%) blur(2px); /* Efeito visual de pausa */
+    pointer-events: none; /* Desabilita interações */
+}
+
+/* Estado de game over */
+.game-ended .game-container {
+    filter: grayscale(80%) brightness(0.5); /* Efeito visual de fim de jogo */
+    pointer-events: none; /* Desabilita interações */
+}
+
+/* Estado de jogo ativo */
+.game-active .player {
+    cursor: none; /* Remove cursor durante o jogo */
+}
+
+/* ===== ACESSIBILIDADE ===== */
+
+/* Foco para navegação por teclado */
+.btn:focus,
+.nav-link:focus {
+    outline: 2px solid #ffd700; /* Contorno dourado */
+    outline-offset: 2px; /* Espaçamento do contorno */
+}
+
+/* Redução de movimento para usuários sensíveis */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important; /* Reduz drasticamente animações */
+        animation-iteration-count: 1 !important; /* Uma iteração apenas */
+        transition-duration: 0.01ms !important; /* Reduz transições */
+    }
+}
+
+/* Alto contraste para melhor acessibilidade */
+@media (prefers-contrast: high) {
+    .nav-link,
+    .btn,
+    .game-info .value {
+        border: 1px solid currentColor; /* Adiciona bordas para melhor contraste */
+    }
+}

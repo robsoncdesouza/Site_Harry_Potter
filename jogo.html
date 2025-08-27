@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harry Potter</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="img/icone.jpg" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap" rel="stylesheet">
+</head>
+<body>
+   <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html#inicio"><img class="logo" src="img/logo.png" alt="Rosto do Harry Potter dourado"></a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html#inicio">Início</a></li>
+                    <li><a href="index.html#quem">Quem é HP</a></li>
+                    <li><a href="index.html#livros">Livros HP</a></li>
+                    <li><a href="index.html#filmes">Filmes HP</a></li>
+                    <li><a href="contato.html#contato">Contato</a></li>
+                    <li><a href="#jogo">Jogo</a></li>
+                </ul>
+            </nav>
+        </div>    
+   </header>
+
+    <!-- Container principal do jogo -->
+    <main class="game-main">
+        <!-- Título do jogo -->
+        <div class="game-title">
+            <h2>🧙‍♂ Coletor de Objetos Mágicos</h2>
+            <p>Ajude Dumbledor a coletar objetos mágicos enquanto evita os obstáculos!</p>
+        </div>
+
+        <!-- Painel de controle e informações -->
+        <div class="game-controls">
+            <!-- Placar e informações do jogo -->
+            <div class="game-info">
+                <div class="score-display">
+                    <span class="label">Pontuação:</span>
+                    <span id="score" class="value">0</span>
+                </div>
+                <div class="level-display">
+                    <span class="label">Nível:</span>
+                    <span id="level" class="value">1</span>
+                </div>
+                <div class="lives-display">
+                    <span class="label">Vidas:</span>
+                    <span id="lives" class="value">❤❤❤</span>
+                </div>
+            </div>
+
+            <!-- Botões de controle do jogo -->
+            <div class="control-buttons">
+                <button id="startBtn" class="btn btn-primary">🎮 Iniciar</button>
+                <button id="pauseBtn" class="btn btn-secondary" disabled>⏸ Pausar</button>
+                <button id="restartBtn" class="btn btn-accent">🔄 Reiniciar</button>
+            </div>
+        </div>
+
+        <!-- Área do jogo (onde acontece a ação) -->
+        <div class="game-area" id="gameArea">
+            <!-- Container relativo para posicionamento absoluto dos elementos -->
+            <div class="game-container" id="gameContainer">
+                <!-- Personagem principal (Harry Potter) -->
+                <div class="player" id="player">
+                    <span class="player-icon">🧙‍♂</span>
+                </div>
+
+                <!-- Área onde aparecerão os objetos coletáveis -->
+                <div class="collectibles-area" id="collectiblesArea">
+                    <!-- Os objetos mágicos serão criados dinamicamente aqui -->
+                </div>
+
+                <!-- Área onde aparecerão os obstáculos -->
+                <div class="obstacles-area" id="obstaclesArea">
+                    <!-- Os obstáculos serão criados dinamicamente aqui -->
+                </div>
+
+                <!-- Efeitos visuais (partículas, explosões, etc.) -->
+                <div class="effects-area" id="effectsArea">
+                    <!-- Efeitos visuais serão criados dinamicamente aqui -->
+                </div>
+            </div>
+
+            <!-- Tela de game over -->
+            <div class="game-over-screen" id="gameOverScreen">
+                <div class="game-over-content">
+                    <h3>🏆 Fim de Jogo!</h3>
+                    <p>Sua pontuação final: <span id="finalScore">0</span></p>
+                    <p>Nível alcançado: <span id="finalLevel">1</span></p>
+                    <button id="playAgainBtn" class="btn btn-primary">🎮 Jogar Novamente</button>
+                </div>
+            </div>
+
+            <!-- Tela de pausa -->
+            <div class="pause-screen" id="pauseScreen">
+                <div class="pause-content">
+                    <h3>⏸ Jogo Pausado</h3>
+                    <p>Pressione "Continuar" para retomar o jogo</p>
+                    <button id="resumeBtn" class="btn btn-primary">▶ Continuar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Instruções do jogo -->
+        <div class="game-instructions">
+            <h3>📋 Como Jogar:</h3>
+            <ul>
+                <li>🖱 <strong>Mouse:</strong> Mova o cursor para controlar Dumbledor</li>
+                <li>📱 <strong>Touch:</strong> Toque e arraste para mover (dispositivos móveis)</li>
+                <li>⭐ <strong>Objetivo:</strong> Colete objetos mágicos (⚡🔮🪄) para ganhar pontos</li>
+                <li>⚠ <strong>Cuidado:</strong> Evite os obstáculos (💀🐍🕷) ou perderá vidas</li>
+                <li>📈 <strong>Progressão:</strong> A cada nível, o jogo fica mais rápido e desafiador</li>
+                <li>⏸ <strong>Controles:</strong> Use os botões para pausar, reiniciar ou iniciar o jogo</li>
+            </ul>
+        </div>
+    </main>
+<footer>
+    <p>2025 - Criado por Robson Cardoso - Todos os Direitos Reservados</p>
+</footer>
+<script>// ===== VARIÁVEIS GLOBAIS DO JOGO =====
+
+// Estado geral do jogo
+let gameState = 'stopped'; // Estados possíveis: 'stopped', 'playing', 'paused', 'gameOver'
+let gameLoop; // Variável para armazenar o ID do loop principal do jogo
+let lastTime = 0; // Timestamp da última execução do loop (para controle de FPS)
+
+// Elementos do DOM que serão manipulados
+const gameArea = document.getElementById('gameArea'); // Área principal do jogo
+const gameContainer = document.getElementById('gameContainer'); // Container dos elementos do jogo
+const player = document.getElementById('player'); // Elemento do jogador (Harry Potter)
+const collectiblesArea = document.getElementById('collectiblesArea'); // Área dos objetos coletáveis
+const obstaclesArea = document.getElementById('obstaclesArea'); // Área dos obstáculos
+const effectsArea = document.getElementById('effectsArea'); // Área dos efeitos visuais
+
+// Elementos da interface do usuário
+const scoreElement = document.getElementById('score'); // Display da pontuação
+const levelElement = document.getElementById('level'); // Display do nível
+const livesElement = document.getElementById('lives'); // Display das vidas
+const gameOverScreen = document.getElementById('gameOverScreen'); // Tela de game over
+const pauseScreen = document.getElementById('pauseScreen'); // Tela de pausa
+const finalScoreElement = document.getElementById('finalScore'); // Pontuação final
+const finalLevelElement = document.getElementById('finalLevel'); // Nível final
+
+// Botões de controle
+const startBtn = document.getElementById('startBtn'); // Botão de iniciar
+const pauseBtn = document.getElementById('pauseBtn'); // Botão de pausar
+const restartBtn = document.getElementById('restartBtn'); // Botão de reiniciar
+const resumeBtn = document.getElementById('resumeBtn'); // Botão de continuar
+const playAgainBtn = document.getElementById('playAgainBtn'); // Botão de jogar novamente
+
+// Variáveis de pontuação e progresso
+let score = 0; // Pontuação atual do jogador
+let level = 1; // Nível atual do jogo
+let lives = 3; // Vidas restantes do jogador
+let gameSpeed = 1; // Velocidade base do jogo (aumenta com os níveis)
+
+// Posição do jogador
+let playerPosition = { // Objeto para armazenar a posição do jogador
+    x: 0, // Posição horizontal (será calculada dinamicamente)
+    y: 0  // Posição vertical (será calculada dinamicamente)
+};
+
+// Arrays para armazenar os objetos do jogo
+let collectibles = []; // Array de objetos coletáveis ativos
+let obstacles = []; // Array de obstáculos ativos
+let effects = []; // Array de efeitos visuais ativos
+
+// Configurações do jogo
+const gameConfig = {
+    // Velocidades de movimento (pixels por frame)
+    collectibleSpeed: 2, // Velocidade base dos objetos coletáveis
+    obstacleSpeed: 2.5, // Velocidade base dos obstáculos
+    
+    // Frequência de spawn (em frames - menor = mais frequente)
+    collectibleSpawnRate: 60, // A cada 60 frames (aproximadamente 1 segundo)
+    obstacleSpawnRate: 90, // A cada 90 frames (aproximadamente 1.5 segundos)
+    
+    // Tamanhos dos objetos (para detecção de colisão)
+    playerSize: 40, // Tamanho do jogador
+    collectibleSize: 25, // Tamanho dos coletáveis
+    obstacleSize: 30, // Tamanho dos obstáculos
+    
+    // Pontuação
+    pointsPerCollectible: 10, // Pontos ganhos por objeto coletado
+    pointsPerLevel: 100, // Pontos necessários para subir de nível
+    
+    // Objetos temáticos do Harry Potter
+    collectibleTypes: ['⚡', '🔮', '🪄', '📜', '🦉', '🍯'], // Objetos mágicos coletáveis
+    obstacleTypes: ['💀', '🐍', '🕷', '👻', '🦇', '🔥'] // Obstáculos perigosos
+};
+
+// Contadores para controle de spawn
+let collectibleSpawnCounter = 0; // Contador para spawn de coletáveis
+let obstacleSpawnCounter = 0; // Contador para spawn de obstáculos
+
+// ===== FUNÇÕES DE INICIALIZAÇÃO =====
+
+// Função principal de inicialização do jogo
+function initGame() {
+    console.log('Inicializando o jogo...'); // Log para debug
+    
+    // Configura os event listeners dos botões
+    setupEventListeners();
+    
+    // Configura os controles de movimento do jogador
+    setupPlayerControls();
+    
+    // Configura a posição inicial do jogador
+    setupPlayerPosition();
+    
+    // Configura o menu mobile responsivo
+    setupMobileMenu();
+    
+    console.log('Jogo inicializado com sucesso!'); // Log de confirmação
+}
+
+// Configura todos os event listeners dos botões
+function setupEventListeners() {
+    // Botão de iniciar jogo
+    startBtn.addEventListener('click', startGame);
+    
+    // Botão de pausar jogo
+    pauseBtn.addEventListener('click', pauseGame);
+    
+    // Botão de reiniciar jogo
+    restartBtn.addEventListener('click', restartGame);
+    
+    // Botão de continuar (na tela de pausa)
+    resumeBtn.addEventListener('click', resumeGame);
+    
+    // Botão de jogar novamente (na tela de game over)
+    playAgainBtn.addEventListener('click', restartGame);
+    
+    console.log('Event listeners configurados'); // Log para debug
+}
+
+// Configura os controles de movimento do jogador
+function setupPlayerControls() {
+    // Controle por mouse (desktop)
+    gameContainer.addEventListener('mousemove', handleMouseMove);
+    
+    // Controles por touch (mobile)
+    gameContainer.addEventListener('touchstart', handleTouchStart, { passive: false });
+    gameContainer.addEventListener('touchmove', handleTouchMove, { passive: false });
+    
+    console.log('Controles do jogador configurados'); // Log para debug
+}
+
+// Configura a posição inicial do jogador
+function setupPlayerPosition() {
+    const containerRect = gameContainer.getBoundingClientRect(); // Obtém dimensões do container
+    
+    // Posiciona o jogador no centro horizontal e na parte inferior
+    playerPosition.x = containerRect.width / 2; // Centro horizontal
+    playerPosition.y = containerRect.height - 60; // Próximo à parte inferior
+    
+    // Aplica a posição inicial ao elemento do jogador
+    updatePlayerPosition();
+    
+    console.log('Posição inicial do jogador configurada:', playerPosition); // Log para debug
+}
+
+// Configura o menu mobile responsivo
+function setupMobileMenu() {
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn'); // Botão do menu mobile
+    const mainNav = document.querySelector('.main-nav'); // Navegação principal
+    
+    // Adiciona event listener para o botão do menu mobile
+    if (mobileMenuBtn && mainNav) {
+        mobileMenuBtn.addEventListener('click', function() {
+            mainNav.classList.toggle('active'); // Alterna a classe 'active' para mostrar/ocultar menu
+            console.log('Menu mobile alternado'); // Log para debug
+        });
+    }
+}
+
+// ===== FUNÇÕES DE CONTROLE DO JOGO =====
+
+// Inicia o jogo
+function startGame() {
+    console.log('Iniciando o jogo...'); // Log para debug
+    
+    // Reseta todas as variáveis para o estado inicial
+    resetGameVariables();
+    
+    // Atualiza a interface do usuário
+    updateUI();
+    
+    // Oculta telas de sobreposição
+    hideOverlayScreens();
+    
+    // Configura os botões para o estado de jogo ativo
+    setGameActiveButtons();
+    
+    // Adiciona classe CSS para estado de jogo ativo
+    gameArea.classList.add('game-active');
+    
+    // Muda o estado do jogo para 'playing'
+    gameState = 'playing';
+    
+    // Inicia o loop principal do jogo
+    startGameLoop();
+    
+    console.log('Jogo iniciado com sucesso!'); // Log de confirmação
+}
+
+// Pausa o jogo
+function pauseGame() {
+    if (gameState !== 'playing') return; // Só pausa se estiver jogando
+    
+    console.log('Pausando o jogo...'); // Log para debug
+    
+    // Muda o estado para pausado
+    gameState = 'paused';
+    
+    // Para o loop do jogo
+    stopGameLoop();
+    
+    // Mostra a tela de pausa
+    showPauseScreen();
+    
+    // Atualiza os botões
+    setPausedButtons();
+    
+    // Adiciona classe CSS para estado pausado
+    gameArea.classList.add('game-paused');
+    
+    console.log('Jogo pausado'); // Log de confirmação
+}
+
+// Retoma o jogo após pausa
+function resumeGame() {
+    if (gameState !== 'paused') return; // Só retoma se estiver pausado
+    
+    console.log('Retomando o jogo...'); // Log para debug
+    
+    // Muda o estado para jogando
+    gameState = 'playing';
+    
+    // Oculta a tela de pausa
+    hidePauseScreen();
+    
+    // Atualiza os botões
+    setGameActiveButtons();
+    
+    // Remove classe CSS de pausado
+    gameArea.classList.remove('game-paused');
+    
+    // Reinicia o loop do jogo
+    startGameLoop();
+    
+    console.log('Jogo retomado'); // Log de confirmação
+}
+
+// Reinicia o jogo completamente
+function restartGame() {
+    console.log('Reiniciando o jogo...'); // Log para debug
+    
+    // Para o loop atual se estiver rodando
+    stopGameLoop();
+    
+    // Limpa todos os objetos da tela
+    clearAllGameObjects();
+    
+    // Remove todas as classes de estado
+    gameArea.classList.remove('game-active', 'game-paused', 'game-ended');
+    
+    // Inicia um novo jogo
+    startGame();
+    
+    console.log('Jogo reiniciado'); // Log de confirmação
+}
+
+// Termina o jogo (game over)
+function endGame() {
+    console.log('Terminando o jogo...'); // Log para debug
+    
+    // Muda o estado para game over
+    gameState = 'gameOver';
+    
+    // Para o loop do jogo
+    stopGameLoop();
+    
+    // Atualiza a pontuação final na tela de game over
+    finalScoreElement.textContent = score;
+    finalLevelElement.textContent = level;
+    
+    // Mostra a tela de game over
+    showGameOverScreen();
+    
+    // Atualiza os botões
+    setGameOverButtons();
+    
+    // Adiciona classe CSS para estado de fim de jogo
+    gameArea.classList.add('game-ended');
+    gameArea.classList.remove('game-active', 'game-paused');
+    
+    console.log('Jogo terminado. Pontuação final:', score); // Log de confirmação
+}
+
+// ===== FUNÇÕES DO LOOP PRINCIPAL =====
+
+// Inicia o loop principal do jogo
+function startGameLoop() {
+    lastTime = performance.now(); // Registra o tempo inicial
+    gameLoop = requestAnimationFrame(gameLoopFunction); // Inicia o loop
+    console.log('Loop do jogo iniciado'); // Log para debug
+}
+
+// Para o loop principal do jogo
+function stopGameLoop() {
+    if (gameLoop) {
+        cancelAnimationFrame(gameLoop); // Cancela o loop
+        gameLoop = null; // Limpa a referência
+        console.log('Loop do jogo parado'); // Log para debug
+    }
+}
+
+// Função principal do loop do jogo (executada a cada frame)
+function gameLoopFunction(currentTime) {
+    // Calcula o tempo decorrido desde o último frame
+    const deltaTime = currentTime - lastTime;
+    lastTime = currentTime;
+    
+    // Só executa se o jogo estiver ativo
+    if (gameState === 'playing') {
+        // Atualiza todos os elementos do jogo
+        updateGame(deltaTime);
+        
+        // Renderiza todos os elementos na tela
+        renderGame();
+    }
+    
+    // Agenda o próximo frame se o jogo ainda estiver rodando
+    if (gameState === 'playing') {
+        gameLoop = requestAnimationFrame(gameLoopFunction);
+    }
+}
+
+// Atualiza toda a lógica do jogo
+function updateGame(deltaTime) {
+    // Atualiza contadores de spawn
+    updateSpawnCounters();
+    
+    // Cria novos objetos coletáveis
+    spawnCollectibles();
+    
+    // Cria novos obstáculos
+    spawnObstacles();
+    
+    // Move todos os objetos coletáveis
+    updateCollectibles();
+    
+    // Move todos os obstáculos
+    updateObstacles();
+    
+    // Atualiza efeitos visuais
+    updateEffects();
+    
+    // Verifica colisões entre jogador e objetos
+    checkCollisions();
+    
+    // Verifica se deve subir de nível
+    checkLevelUp();
+    
+    // Remove objetos que saíram da tela
+    cleanupObjects();
+}
+
+// Renderiza todos os elementos visuais
+function renderGame() {
+    // Atualiza a posição visual do jogador
+    updatePlayerPosition();
+    
+    // Atualiza a interface do usuário
+    updateUI();
+}
+
+// ===== FUNÇÕES DE MOVIMENTO DO JOGADOR =====
+
+// Manipula movimento do mouse
+function handleMouseMove(event) {
+    if (gameState !== 'playing') return; // Só move se estiver jogando
+    
+    const rect = gameContainer.getBoundingClientRect(); // Obtém posição do container
+    
+    // Calcula nova posição baseada na posição do mouse
+    playerPosition.x = event.clientX - rect.left;
+    playerPosition.y = event.clientY - rect.top;
+    
+    // Garante que o jogador não saia dos limites
+    constrainPlayerPosition();
+}
+
+// Manipula início do toque (touch)
+function handleTouchStart(event) {
+    event.preventDefault(); // Previne comportamento padrão do touch
+    
+    if (gameState !== 'playing') return; // Só move se estiver jogando
+    
+    const touch = event.touches[0]; // Obtém o primeiro toque
+    const rect = gameContainer.getBoundingClientRect(); // Obtém posição do container
+    
+    // Calcula nova posição baseada na posição do toque
+    playerPosition.x = touch.clientX - rect.left;
+    playerPosition.y = touch.clientY - rect.top;
+    
+    // Garante que o jogador não saia dos limites
+    constrainPlayerPosition();
+}
+
+// Manipula movimento do toque (touch)
+function handleTouchMove(event) {
+    event.preventDefault(); // Previne comportamento padrão do touch
+    
+    if (gameState !== 'playing') return; // Só move se estiver jogando
+    
+    const touch = event.touches[0]; // Obtém o primeiro toque
+    const rect = gameContainer.getBoundingClientRect(); // Obtém posição do container
+    
+    // Calcula nova posição baseada na posição do toque
+    playerPosition.x = touch.clientX - rect.left;
+    playerPosition.y = touch.clientY - rect.top;
+    
+    // Garante que o jogador não saia dos limites
+    constrainPlayerPosition();
+}
+
+// Garante que o jogador não saia dos limites da área do jogo
+function constrainPlayerPosition() {
+    const containerRect = gameContainer.getBoundingClientRect(); // Obtém dimensões do container
+    const playerSize = gameConfig.playerSize; // Tamanho do jogador
+    
+    // Limita posição horizontal
+    playerPosition.x = Math.max(playerSize / 2, Math.min(containerRect.width - playerSize / 2, playerPosition.x));
+    
+    // Limita posição vertical
+    playerPosition.y = Math.max(playerSize / 2, Math.min(containerRect.height - playerSize / 2, playerPosition.y));
+}
+
+// Atualiza a posição visual do jogador na tela
+function updatePlayerPosition() {
+    // Aplica a posição calculada ao elemento do jogador
+    player.style.left = (playerPosition.x - gameConfig.playerSize / 2) + 'px';
+    player.style.bottom = (gameContainer.getBoundingClientRect().height - playerPosition.y - gameConfig.playerSize / 2) + 'px';
+}
+
+// ===== FUNÇÕES DE SPAWN DE OBJETOS =====
+
+// Atualiza contadores de spawn
+function updateSpawnCounters() {
+    collectibleSpawnCounter++; // Incrementa contador de coletáveis
+    obstacleSpawnCounter++; // Incrementa contador de obstáculos
+}
+
+// Cria novos objetos coletáveis
+function spawnCollectibles() {
+    // Verifica se é hora de criar um novo coletável
+    if (collectibleSpawnCounter >= gameConfig.collectibleSpawnRate / gameSpeed) {
+        createCollectible(); // Cria o coletável
+        collectibleSpawnCounter = 0; // Reseta o contador
+    }
+}
+
+// Cria novos obstáculos
+function spawnObstacles() {
+    // Verifica se é hora de criar um novo obstáculo
+    if (obstacleSpawnCounter >= gameConfig.obstacleSpawnRate / gameSpeed) {
+        createObstacle(); // Cria o obstáculo
+        obstacleSpawnCounter = 0; // Reseta o contador
+    }
+}
+
+// Cria um objeto coletável
+function createCollectible() {
+    const containerRect = gameContainer.getBoundingClientRect(); // Obtém dimensões do container
+    
+    // Cria objeto coletável com propriedades
+    const collectible = {
+        id: Date.now() + Math.random(), // ID único
+        x: Math.random() * (containerRect.width - gameConfig.collectibleSize), // Posição X aleatória
+        y: -gameConfig.collectibleSize, // Começa acima da tela
+        type: gameConfig.collectibleTypes[Math.floor(Math.random() * gameConfig.collectibleTypes.length)], // Tipo aleatório
+        element: null // Referência ao elemento DOM (será criada)
+    };
+    
+    // Cria elemento DOM para o coletável
+    collectible.element = document.createElement('div');
+    collectible.element.className = 'collectible'; // Aplica classe CSS
+    collectible.element.textContent = collectible.type; // Define o emoji
+    collectible.element.style.left = collectible.x + 'px'; // Posição horizontal
+    collectible.element.style.top = collectible.y + 'px'; // Posição vertical
+    
+    // Adiciona o elemento à área de coletáveis
+    collectiblesArea.appendChild(collectible.element);
+    
+    // Adiciona o coletável ao array
+    collectibles.push(collectible);
+    
+    console.log('Coletável criado:', collectible.type); // Log para debug
+}
+
+// Cria um obstáculo
+function createObstacle() {
+    const containerRect = gameContainer.getBoundingClientRect(); // Obtém dimensões do container
+    
+    // Cria objeto obstáculo com propriedades
+    const obstacle = {
+        id: Date.now() + Math.random(), // ID único
+        x: Math.random() * (containerRect.width - gameConfig.obstacleSize), // Posição X aleatória
+        y: -gameConfig.obstacleSize, // Começa acima da tela
+        type: gameConfig.obstacleTypes[Math.floor(Math.random() * gameConfig.obstacleTypes.length)], // Tipo aleatório
+        element: null // Referência ao elemento DOM (será criada)
+    };
+    
+    // Cria elemento DOM para o obstáculo
+    obstacle.element = document.createElement('div');
+    obstacle.element.className = 'obstacle'; // Aplica classe CSS
+    obstacle.element.textContent = obstacle.type; // Define o emoji
+    obstacle.element.style.left = obstacle.x + 'px'; // Posição horizontal
+    obstacle.element.style.top = obstacle.y + 'px'; // Posição vertical
+    
+    // Adiciona o elemento à área de obstáculos
+    obstaclesArea.appendChild(obstacle.element);
+    
+    // Adiciona o obstáculo ao array
+    obstacles.push(obstacle);
+    
+    console.log('Obstáculo criado:', obstacle.type); // Log para debug
+}
+
+// ===== FUNÇÕES DE ATUALIZAÇÃO DE OBJETOS =====
+
+// Atualiza todos os objetos coletáveis
+function updateCollectibles() {
+    // Itera sobre todos os coletáveis
+    for (let i = collectibles.length - 1; i >= 0; i--) {
+        const collectible = collectibles[i]; // Obtém o coletável atual
+        
+        // Move o coletável para baixo
+        collectible.y += gameConfig.collectibleSpeed * gameSpeed;
+        
+        // Atualiza posição visual
+        collectible.element.style.top = collectible.y + 'px';
+        
+        // Remove coletável se saiu da tela
+        if (collectible.y > gameContainer.getBoundingClientRect().height) {
+            removeCollectible(i); // Remove da tela e do array
+        }
+    }
+}
+
+// Atualiza todos os obstáculos
+function updateObstacles() {
+    // Itera sobre todos os obstáculos
+    for (let i = obstacles.length - 1; i >= 0; i--) {
+        const obstacle = obstacles[i]; // Obtém o obstáculo atual
+        
+        // Move o obstáculo para baixo
+        obstacle.y += gameConfig.obstacleSpeed * gameSpeed;
+        
+        // Atualiza posição visual
+        obstacle.element.style.top = obstacle.y + 'px';
+        
+        // Remove obstáculo se saiu da tela
+        if (obstacle.y > gameContainer.getBoundingClientRect().height) {
+            removeObstacle(i); // Remove da tela e do array
+        }
+    }
+}
+
+// Atualiza todos os efeitos visuais
+function updateEffects() {
+    // Itera sobre todos os efeitos
+    for (let i = effects.length - 1; i >= 0; i--) {
+        const effect = effects[i]; // Obtém o efeito atual
+        
+        // Reduz o tempo de vida do efeito
+        effect.lifetime--;
+        
+        // Remove efeito se o tempo acabou
+        if (effect.lifetime <= 0) {
+            removeEffect(i); // Remove da tela e do array
+        }
+    }
+}
+
+// ===== FUNÇÕES DE DETECÇÃO DE COLISÃO =====
+
+// Verifica todas as colisões
+function checkCollisions() {
+    checkCollectibleCollisions(); // Verifica colisões com coletáveis
+    checkObstacleCollisions(); // Verifica colisões com obstáculos
+}
+
+// Verifica colisões com objetos coletáveis
+function checkCollectibleCollisions() {
+    // Itera sobre todos os coletáveis
+    for (let i = collectibles.length - 1; i >= 0; i--) {
+        const collectible = collectibles[i]; // Obtém o coletável atual
+        
+        // Verifica se há colisão com o jogador
+        if (isColliding(playerPosition, collectible, gameConfig.playerSize, gameConfig.collectibleSize)) {
+            // Colisão detectada!
+            collectCollectible(i); // Processa a coleta
+        }
+    }
+}
+
+// Verifica colisões com obstáculos
+function checkObstacleCollisions() {
+    // Itera sobre todos os obstáculos
+    for (let i = obstacles.length - 1; i >= 0; i--) {
+        const obstacle = obstacles[i]; // Obtém o obstáculo atual
+        
+        // Verifica se há colisão com o jogador
+        if (isColliding(playerPosition, obstacle, gameConfig.playerSize, gameConfig.obstacleSize)) {
+            // Colisão detectada!
+            hitObstacle(i); // Processa a colisão
+        }
+    }
+}
+
+// Função para detectar colisão entre dois objetos circulares
+function isColliding(obj1, obj2, size1, size2) {
+    // Calcula a distância entre os centros dos objetos
+    const dx = obj1.x - (obj2.x + size2 / 2); // Diferença horizontal
+    const dy = obj1.y - (obj2.y + size2 / 2); // Diferença vertical
+    const distance = Math.sqrt(dx * dx + dy * dy); // Distância euclidiana
+    
+    // Calcula a distância mínima para colisão
+    const minDistance = (size1 + size2) / 2;
+    
+    // Retorna true se há colisão
+    return distance < minDistance;
+}
+
+// ===== FUNÇÕES DE PROCESSAMENTO DE COLISÕES =====
+
+// Processa a coleta de um objeto coletável
+function collectCollectible(index) {
+    const collectible = collectibles[index]; // Obtém o coletável
+    
+    // Aumenta a pontuação
+    score += gameConfig.pointsPerCollectible;
+    
+    // Cria efeito visual de coleta
+    createCollectEffect(collectible.x, collectible.y, collectible.type);
+    
+    // Remove o coletável
+    removeCollectible(index);
+    
+    // Atualiza a interface
+    updateUI();
+    
+    console.log('Coletável coletado! Pontuação:', score); // Log para debug
+}
+
+// Processa a colisão com um obstáculo
+function hitObstacle(index) {
+    const obstacle = obstacles[index]; // Obtém o obstáculo
+    
+    // Reduz uma vida
+    lives--;
+    
+    // Cria efeito visual de colisão
+    createHitEffect(obstacle.x, obstacle.y);
+    
+    // Remove o obstáculo
+    removeObstacle(index);
+    
+    // Adiciona animação de colisão ao jogador
+    player.classList.add('collision-animation');
+    setTimeout(() => {
+        player.classList.remove('collision-animation'); // Remove após a animação
+    }, 600);
+    
+    // Atualiza a interface
+    updateUI();
+    
+    // Verifica se o jogo acabou
+    if (lives <= 0) {
+        endGame(); // Termina o jogo se não há mais vidas
+    }
+    
+    console.log('Obstáculo atingido! Vidas restantes:', lives); // Log para debug
+}
+
+// ===== FUNÇÕES DE EFEITOS VISUAIS =====
+
+// Cria efeito visual de coleta
+function createCollectEffect(x, y, type) {
+    // Cria elemento do efeito
+    const effect = document.createElement('div');
+    effect.className = 'collect-effect'; // Aplica classe CSS
+    effect.textContent = '+' + gameConfig.pointsPerCollectible; // Mostra pontos ganhos
+    effect.style.position = 'absolute'; // Posicionamento absoluto
+    effect.style.left = x + 'px'; // Posição horizontal
+    effect.style.top = y + 'px'; // Posição vertical
+    effect.style.color = '#ffd700'; // Cor dourada
+    effect.style.fontWeight = 'bold'; // Negrito
+    effect.style.fontSize = '1.2rem'; // Tamanho da fonte
+    effect.style.pointerEvents = 'none'; // Não interfere com cliques
+    effect.style.zIndex = '15'; // Camada superior
+    
+    // Adiciona à área de efeitos
+    effectsArea.appendChild(effect);
+    
+    // Adiciona animação
+    effect.classList.add('collect-animation');
+    
+    // Remove após a animação
+    setTimeout(() => {
+        if (effect.parentNode) {
+            effectsArea.removeChild(effect);
+        }
+    }, 500);
+    
+    console.log('Efeito de coleta criado'); // Log para debug
+}
+
+// Cria efeito visual de colisão
+function createHitEffect(x, y) {
+    // Cria elemento do efeito
+    const effect = document.createElement('div');
+    effect.className = 'hit-effect'; // Aplica classe CSS
+    effect.textContent = '💥'; // Emoji de explosão
+    effect.style.position = 'absolute'; // Posicionamento absoluto
+    effect.style.left = x + 'px'; // Posição horizontal
+    effect.style.top = y + 'px'; // Posição vertical
+    effect.style.fontSize = '2rem'; // Tamanho grande
+    effect.style.pointerEvents = 'none'; // Não interfere com cliques
+    effect.style.zIndex = '15'; // Camada superior
+    
+    // Adiciona à área de efeitos
+    effectsArea.appendChild(effect);
+    
+    // Adiciona animação
+    effect.classList.add('collision-animation');
+    
+    // Remove após a animação
+    setTimeout(() => {
+        if (effect.parentNode) {
+            effectsArea.removeChild(effect);
+        }
+    }, 600);
+    
+    console.log('Efeito de colisão criado'); // Log para debug
+}
+
+// ===== FUNÇÕES DE REMOÇÃO DE OBJETOS =====
+
+// Remove um coletável específico
+function removeCollectible(index) {
+    const collectible = collectibles[index]; // Obtém o coletável
+    
+    // Remove elemento do DOM
+    if (collectible.element && collectible.element.parentNode) {
+        collectiblesArea.removeChild(collectible.element);
+    }
+    
+    // Remove do array
+    collectibles.splice(index, 1);
+}
+
+// Remove um obstáculo específico
+function removeObstacle(index) {
+    const obstacle = obstacles[index]; // Obtém o obstáculo
+    
+    // Remove elemento do DOM
+    if (obstacle.element && obstacle.element.parentNode) {
+        obstaclesArea.removeChild(obstacle.element);
+    }
+    
+    // Remove do array
+    obstacles.splice(index, 1);
+}
+
+// Remove um efeito específico
+function removeEffect(index) {
+    const effect = effects[index]; // Obtém o efeito
+    
+    // Remove elemento do DOM
+    if (effect.element && effect.element.parentNode) {
+        effectsArea.removeChild(effect.element);
+    }
+    
+    // Remove do array
+    effects.splice(index, 1);
+}
+
+// Remove objetos que saíram da tela
+function cleanupObjects() {
+    const containerHeight = gameContainer.getBoundingClientRect().height; // Altura do container
+    
+    // Limpa coletáveis que saíram da tela
+    for (let i = collectibles.length - 1; i >= 0; i--) {
+        if (collectibles[i].y > containerHeight + 50) { // 50px de margem
+            removeCollectible(i);
+        }
+    }
+    
+    // Limpa obstáculos que saíram da tela
+    for (let i = obstacles.length - 1; i >= 0; i--) {
+        if (obstacles[i].y > containerHeight + 50) { // 50px de margem
+            removeObstacle(i);
+        }
+    }
+}
+
+// Limpa todos os objetos do jogo
+function clearAllGameObjects() {
+    // Remove todos os coletáveis
+    while (collectibles.length > 0) {
+        removeCollectible(0);
+    }
+    
+    // Remove todos os obstáculos
+    while (obstacles.length > 0) {
+        removeObstacle(0);
+    }
+    
+    // Remove todos os efeitos
+    while (effects.length > 0) {
+        removeEffect(0);
+    }
+    
+    console.log('Todos os objetos do jogo foram limpos'); // Log para debug
+}
+
+// ===== FUNÇÕES DE PROGRESSÃO DO JOGO =====
+
+// Verifica se deve subir de nível
+function checkLevelUp() {
+    const requiredScore = level * gameConfig.pointsPerLevel; // Pontuação necessária para o próximo nível
+    
+    // Verifica se atingiu a pontuação necessária
+    if (score >= requiredScore) {
+        levelUp(); // Sobe de nível
+    }
+}
+
+// Sobe de nível
+function levelUp() {
+    level++; // Incrementa o nível
+    gameSpeed += 0.2; // Aumenta a velocidade do jogo
+    
+    // Cria efeito visual de level up
+    createLevelUpEffect();
+    
+    // Atualiza a interface
+    updateUI();
+    
+    console.log('Level up! Nível atual:', level, 'Velocidade:', gameSpeed); // Log para debug
+}
+
+// Cria efeito visual de level up
+function createLevelUpEffect() {
+    // Cria elemento do efeito
+    const effect = document.createElement('div');
+    effect.textContent = 'NÍVEL ' + level + '!'; // Texto do level up
+    effect.style.position = 'absolute'; // Posicionamento absoluto
+    effect.style.top = '50%'; // Centro vertical
+    effect.style.left = '50%'; // Centro horizontal
+    effect.style.transform = 'translate(-50%, -50%)'; // Centraliza perfeitamente
+    effect.style.color = '#ffd700'; // Cor dourada
+    effect.style.fontSize = '2rem'; // Tamanho grande
+    effect.style.fontWeight = 'bold'; // Negrito
+    effect.style.textShadow = '2px 2px 4px rgba(0,0,0,0.8)'; // Sombra do texto
+    effect.style.pointerEvents = 'none'; // Não interfere com cliques
+    effect.style.zIndex = '20'; // Camada muito superior
+    effect.style.animation = 'fadeInUp 1s ease-out'; // Animação de entrada
+    
+    // Adiciona à área de efeitos
+    effectsArea.appendChild(effect);
+    
+    // Remove após 2 segundos
+    setTimeout(() => {
+        if (effect.parentNode) {
+            effectsArea.removeChild(effect);
+        }
+    }, 2000);
+    
+    console.log('Efeito de level up criado'); // Log para debug
+}
+
+// ===== FUNÇÕES DE INTERFACE DO USUÁRIO =====
+
+// Atualiza todos os elementos da interface
+function updateUI() {
+    updateScore(); // Atualiza pontuação
+    updateLevel(); // Atualiza nível
+    updateLives(); // Atualiza vidas
+}
+
+// Atualiza display da pontuação
+function updateScore() {
+    scoreElement.textContent = score; // Define o texto da pontuação
+}
+
+// Atualiza display do nível
+function updateLevel() {
+    levelElement.textContent = level; // Define o texto do nível
+}
+
+// Atualiza display das vidas
+function updateLives() {
+    let livesText = ''; // String para armazenar os corações
+    
+    // Adiciona corações baseado no número de vidas
+    for (let i = 0; i < lives; i++) {
+        livesText += '❤'; // Adiciona coração vermelho
+    }
+    
+    // Adiciona corações vazios para vidas perdidas
+    for (let i = lives; i < 3; i++) {
+        livesText += '🖤'; // Adiciona coração preto (vazio)
+    }
+    
+    livesElement.textContent = livesText; // Define o texto das vidas
+}
+
+// ===== FUNÇÕES DE CONTROLE DE TELAS =====
+
+// Oculta todas as telas de sobreposição
+function hideOverlayScreens() {
+    gameOverScreen.style.display = 'none'; // Oculta tela de game over
+    pauseScreen.style.display = 'none'; // Oculta tela de pausa
+}
+
+// Mostra a tela de game over
+function showGameOverScreen() {
+    gameOverScreen.style.display = 'flex'; // Mostra tela de game over
+}
+
+// Mostra a tela de pausa
+function showPauseScreen() {
+    pauseScreen.style.display = 'flex'; // Mostra tela de pausa
+}
+
+// Oculta a tela de pausa
+function hidePauseScreen() {
+    pauseScreen.style.display = 'none'; // Oculta tela de pausa
+}
+
+// ===== FUNÇÕES DE CONTROLE DE BOTÕES =====
+
+// Configura botões para estado de jogo ativo
+function setGameActiveButtons() {
+    startBtn.disabled = true; // Desabilita botão de iniciar
+    pauseBtn.disabled = false; // Habilita botão de pausar
+    restartBtn.disabled = false; // Habilita botão de reiniciar
+}
+
+// Configura botões para estado pausado
+function setPausedButtons() {
+    startBtn.disabled = true; // Desabilita botão de iniciar
+    pauseBtn.disabled = true; // Desabilita botão de pausar
+    restartBtn.disabled = false; // Habilita botão de reiniciar
+}
+
+// Configura botões para estado de game over
+function setGameOverButtons() {
+    startBtn.disabled = false; // Habilita botão de iniciar
+    pauseBtn.disabled = true; // Desabilita botão de pausar
+    restartBtn.disabled = false; // Habilita botão de reiniciar
+}
+
+// ===== FUNÇÕES DE RESET =====
+
+// Reseta todas as variáveis do jogo para o estado inicial
+function resetGameVariables() {
+    score = 0; // Reseta pontuação
+    level = 1; // Reseta nível
+    lives = 3; // Reseta vidas
+    gameSpeed = 1; // Reseta velocidade
+    collectibleSpawnCounter = 0; // Reseta contador de spawn de coletáveis
+    obstacleSpawnCounter = 0; // Reseta contador de spawn de obstáculos
+    
+    // Limpa arrays de objetos
+    collectibles = [];
+    obstacles = [];
+    effects = [];
+    
+    console.log('Variáveis do jogo resetadas'); // Log para debug
+}
+
+// ===== INICIALIZAÇÃO =====
+
+// Aguarda o carregamento completo da página antes de inicializar
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM carregado, inicializando jogo...'); // Log para debug
+    initGame(); // Chama a função de inicialização
+});
+
+// Adiciona listener para redimensionamento da janela
+window.addEventListener('resize', function() {
+    // Reconfigura a posição do jogador quando a janela é redimensionada
+    setupPlayerPosition();
+    console.log('Janela redimensionada, posição do jogador reconfigurada'); // Log para debug
+});
+
+// Log final de carregamento do script
+console.log('Script do jogo carregado com sucesso!'); // Log de confirmação</script>        
+</body>
+</html>
