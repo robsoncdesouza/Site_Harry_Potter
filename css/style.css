@@ -520,6 +520,12 @@ section{
   border-bottom: none;
 }
 
+.env{
+    color: #D3A626;
+    text-align: center;
+    justify-content: center;
+}
+
 @media (max-width:675px){
     header .container, .quem-container{
         flex-direction: column;
